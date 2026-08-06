@@ -3,7 +3,8 @@
    Design System & Global Styles
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Google Fonts are loaded via a <link> tag in index.html <head> —
+   not via @import, which would delay font discovery and block rendering. */
 
 /* ── Custom Properties ── */
 :root {
@@ -12,6 +13,7 @@
   --color-gold: #C6A15B;
   --color-gold-light: #D4B87A;
   --color-gold-dark: #A8863E;
+  --color-gold-text: #866B32; /* darker gold for text on light backgrounds — meets WCAG AA (5:1) */
   --color-gray-50: #F8F8F8;
   --color-gray-100: #F0F0F0;
   --color-gray-200: #E5E5E5;
@@ -71,6 +73,26 @@ body {
 body.loading {
   overflow: hidden;
 }
+
+/* ── Layout Utilities ──
+   Replaces Bootstrap (only .row/.col-12/.mb-4/.mb-5/.mx-auto/.text-center
+   were ever used from it — the full framework was ~150KB for six classes). */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+.text-center { text-align: center; }
 
 ::selection {
   background: var(--color-gold);
@@ -489,16 +511,6 @@ img {
 .hero__text {
   color: var(--color-white);
 }
-.hero__pretitle {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  margin-bottom: 1.5rem;
-  animation: fadeInUp 1s 0.2s ease both;
-}
 .hero__headline {
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 5vw, 4rem);
@@ -530,44 +542,6 @@ img {
   justify-content: center;
   animation: fadeInUp 1s 0.5s ease both;
 }
-.hero__portrait-wrapper {
-  position: relative;
-  width: 340px;
-  height: 420px;
-}
-.hero__portrait-frame {
-  position: absolute;
-  inset: -12px;
-  border: 1px solid rgba(198, 161, 91, 0.3);
-  border-radius: 4px;
-}
-.hero__portrait-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-.hero__portrait-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-luxury);
-}
-.hero__portrait-inner:hover img {
-  transform: scale(1.03);
-}
-.hero__portrait-accent {
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 80px;
-  height: 80px;
-  border-right: 2px solid var(--color-gold);
-  border-bottom: 2px solid var(--color-gold);
-}
-
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -602,186 +576,6 @@ img {
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
   50%      { opacity: 1;   transform: scaleY(1); }
-}
-
-/* ── About Section ── */
-.about__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-.about__image-wrap {
-  position: relative;
-}
-.about__image-inner {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-}
-.about__image-inner img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  transition: transform var(--transition-luxury);
-}
-.about__image-inner:hover img {
-  transform: scale(1.03);
-}
-.about__image-accent {
-  position: absolute;
-  top: -16px;
-  left: -16px;
-  width: 100px;
-  height: 100px;
-  border-top: 2px solid var(--color-gold);
-  border-left: 2px solid var(--color-gold);
-}
-.about__text {
-  padding: 1rem 0;
-}
-.about__quote {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-style: italic;
-  color: var(--color-gold);
-  line-height: 1.6;
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-  border-left: 3px solid var(--color-gold);
-}
-
-/* Stats */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-.stat-card {
-  text-align: center;
-  padding: 1.8rem 1rem;
-  background: var(--color-white);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-}
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-.stat-card__number {
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--color-gold);
-  line-height: 1;
-  margin-bottom: 0.4rem;
-}
-.stat-card__label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-gray-500);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-/* ── Leadership Journey Timeline ── */
-.timeline {
-  position: relative;
-  padding: 0;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, var(--color-gold), var(--color-gold), transparent);
-  transform: translateX(-50%);
-}
-.timeline__item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 5rem;
-  position: relative;
-}
-.timeline__item:last-child { margin-bottom: 0; }
-.timeline__item:nth-child(even) {
-  direction: rtl;
-}
-.timeline__item:nth-child(even) .timeline__content {
-  direction: ltr;
-}
-.timeline__dot {
-  position: absolute;
-  left: 50%;
-  top: 1.5rem;
-  width: 14px;
-  height: 14px;
-  background: var(--color-gold);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  box-shadow: 0 0 0 8px rgba(198, 161, 91, 0.12);
-  transition: box-shadow var(--transition-smooth);
-}
-.timeline__item:hover .timeline__dot {
-  box-shadow: 0 0 0 16px rgba(198, 161, 91, 0.15);
-}
-.timeline__content {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 2rem 2.5rem;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-gray-100);
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-}
-.timeline__content:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-.timeline__year {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--color-gold);
-  margin-bottom: 0.3rem;
-}
-.timeline__title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-  color: var(--color-black);
-}
-.timeline__desc {
-  font-size: 0.95rem;
-  color: var(--color-gray-500);
-  line-height: 1.7;
-}
-.timeline__image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.timeline__image-inner {
-  width: 100%;
-  height: 240px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-}
-.timeline__image-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-luxury);
-}
-.timeline__image-inner:hover img {
-  transform: scale(1.05);
 }
 
 /* ── Companies Section ── */
@@ -1227,7 +1021,7 @@ img {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-gray-400);
+  color: var(--color-gray-600);
   margin-bottom: 0.3rem;
 }
 .contact__detail-value {
@@ -1545,22 +1339,6 @@ img {
   50%      { left: 150%; }
 }
 
-/* ── 3D Tilt on Hover ── */
-.tilt-card {
-  transition: transform 0.1s ease-out, box-shadow var(--transition-smooth);
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-/* ── Floating Hero Elements ── */
-.hero__portrait-wrapper {
-  animation: heroFloat 5s ease-in-out infinite;
-}
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-12px); }
-}
-
 /* ── Staggered Gallery Reveal ── */
 .gallery__item {
   opacity: 0;
@@ -1626,15 +1404,6 @@ img {
 @keyframes textShimmer {
   0%, 100% { background-position: 0% 50%; }
   50%      { background-position: 100% 50%; }
-}
-
-/* ── Stats Counter Pulse ── */
-.stat-card:hover .stat-card__number {
-  animation: numberPulse 0.6s ease;
-}
-@keyframes numberPulse {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.08); }
 }
 
 /* ── Section Divider Wave ── */
@@ -2102,7 +1871,7 @@ textarea:focus-visible {
 .about-profile__eyebrow {
   display: inline-block;
   margin-bottom: 1rem;
-  color: var(--color-gold-dark);
+  color: var(--color-gold-text);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -2127,7 +1896,7 @@ textarea:focus-visible {
   position: relative;
   margin: 2rem 0;
   padding: 1.6rem 1.7rem 1.6rem 2rem;
-  color: var(--color-gold-dark);
+  color: var(--color-gold-text);
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.1vw, 1.65rem);
   font-style: italic;
@@ -2430,259 +2199,6 @@ textarea:focus-visible {
     linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
 }
 
-.journey-story__layout {
-  display: grid;
-  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(3rem, 6vw, 6.5rem);
-  align-items: start;
-}
-
-.journey-story__visual {
-  position: sticky;
-  top: 7rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(130px, 0.52fr);
-  gap: 1rem;
-  align-items: end;
-}
-
-.journey-story__photo {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--color-gray-100);
-  box-shadow: var(--shadow-xl);
-}
-
-.journey-story__photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: inherit;
-  pointer-events: none;
-}
-
-.journey-story__photo--primary {
-  aspect-ratio: 2 / 3;
-}
-
-.journey-story__photo--secondary {
-  aspect-ratio: 2 / 3;
-  margin-bottom: 2.2rem;
-}
-
-.journey-story__photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform var(--transition-luxury);
-}
-
-.journey-story__photo:hover img {
-  transform: scale(1.025);
-}
-
-.journey-story__visual-note {
-  grid-column: 1 / -1;
-  margin-top: 0.35rem;
-  padding: 1.35rem 1.45rem;
-  border-left: 2px solid var(--color-gold);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: var(--shadow-sm);
-}
-
-.journey-story__visual-note span {
-  display: block;
-  margin-bottom: 0.45rem;
-  color: var(--color-gold-dark);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.journey-story__visual-note p {
-  margin: 0;
-  color: var(--color-gray-600);
-  font-size: 0.92rem;
-  line-height: 1.65;
-}
-
-.journey-story__timeline {
-  position: relative;
-  padding-left: 2.2rem;
-}
-
-.journey-story__timeline::before {
-  content: '';
-  position: absolute;
-  top: 0.9rem;
-  bottom: 1rem;
-  left: 0.58rem;
-  width: 1px;
-  background: linear-gradient(180deg, var(--color-gold), rgba(198, 161, 91, 0.12));
-}
-
-.journey-step {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 1.4rem;
-  padding-bottom: 2.4rem;
-}
-
-.journey-step:last-child {
-  padding-bottom: 0;
-}
-
-.journey-step__marker {
-  position: relative;
-  z-index: 2;
-  width: 2.85rem;
-  height: 2.85rem;
-  margin-left: -3.05rem;
-  border: 1px solid rgba(198, 161, 91, 0.55);
-  border-radius: 50%;
-  background: var(--color-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 7px rgba(198, 161, 91, 0.08);
-  transition: all var(--transition-smooth);
-}
-
-.journey-step:hover .journey-step__marker {
-  background: var(--color-gold);
-  color: var(--color-white);
-  box-shadow: 0 0 0 11px rgba(198, 161, 91, 0.12);
-}
-
-.journey-step__marker span {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--color-gold-dark);
-}
-
-.journey-step:hover .journey-step__marker span {
-  color: var(--color-white);
-}
-
-.journey-step__content {
-  padding: 0.25rem 0 2rem;
-  border-bottom: 1px solid var(--color-gray-200);
-}
-
-.journey-step:last-child .journey-step__content {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.journey-step__phase {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin-bottom: 0.6rem;
-  color: var(--color-gold-dark);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.journey-step__phase::after {
-  content: '';
-  width: 2.4rem;
-  height: 1px;
-  background: rgba(198, 161, 91, 0.55);
-}
-
-.journey-step__content h3 {
-  margin: 0 0 0.7rem;
-  color: var(--color-black);
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
-  line-height: 1.25;
-}
-
-.journey-step__content p {
-  margin: 0;
-  color: var(--color-gray-600);
-  font-size: 0.98rem;
-  line-height: 1.75;
-}
-
-@media (max-width: 1024px) {
-  .journey-story__layout {
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-  }
-
-  .journey-story__visual {
-    position: relative;
-    top: auto;
-    max-width: 650px;
-    margin: 0 auto;
-    grid-template-columns: minmax(0, 1fr) minmax(180px, 0.55fr);
-  }
-
-  .journey-story__photo--primary {
-    max-height: 620px;
-  }
-
-  .journey-story__photo--secondary {
-    max-height: 450px;
-  }
-
-  .journey-story__timeline {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 640px) {
-  .journey-story__visual {
-    grid-template-columns: 1fr 0.68fr;
-    gap: 0.75rem;
-  }
-
-  .journey-story__photo--secondary {
-    margin-bottom: 1.2rem;
-  }
-
-  .journey-story__visual-note {
-    padding: 1.15rem 1.2rem;
-  }
-
-  .journey-story__timeline {
-    padding-left: 1.7rem;
-  }
-
-  .journey-story__timeline::before {
-    left: 0.45rem;
-  }
-
-  .journey-step {
-    gap: 1rem;
-    padding-bottom: 2rem;
-  }
-
-  .journey-step__marker {
-    width: 2.35rem;
-    height: 2.35rem;
-    margin-left: -2.42rem;
-  }
-
-  .journey-step__content h3 {
-    font-size: 1.3rem;
-  }
-
-  .journey-step__content p {
-    font-size: 0.93rem;
-    line-height: 1.7;
-  }
-}
 
 /* ═══════════════════════════════════════════
    Leadership Journey - Alternating Image Placeholders
@@ -2778,6 +2294,54 @@ textarea:focus-visible {
   color: var(--color-gray-600);
   font-size: 0.98rem;
   line-height: 1.75;
+}
+
+/* ── Journey Stat Callouts (STEP 1 upgrade) ── */
+.journey-gallery__stats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(198, 161, 91, 0.25);
+}
+
+.journey-gallery__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 120px;
+}
+
+.journey-gallery__stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-gold-dark);
+  line-height: 1;
+}
+
+.journey-gallery__stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+@media (max-width: 560px) {
+  .journey-gallery__stats {
+    gap: 1.5rem;
+    margin-top: 1.2rem;
+    padding-top: 1.1rem;
+  }
+
+  .journey-gallery__stat-number {
+    font-size: 1.6rem;
+  }
 }
 
 .journey-gallery__placeholder {
@@ -3366,7 +2930,7 @@ textarea:focus-visible {
 .gallery-result-count {
   margin: 1.5rem 0 0;
   text-align: center;
-  color: var(--color-gray-400);
+  color: var(--color-gray-600);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -4024,16 +3588,6 @@ body.lightbox-open {
   height: 100%;
   object-fit: cover;
   background: #000;
-}
-
-.featured-video__hint {
-  position: relative;
-  z-index: 1;
-  margin: 0.8rem 0 0;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.75rem;
-  line-height: 1.6;
-  text-align: right;
 }
 
 @media (max-width: 980px) {
