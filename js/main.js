@@ -64,8 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    if (document.readyState === 'complete') playHeroVideo();
-    else window.addEventListener('load', playHeroVideo, { once: true });
+    // BUGFIX: this used to wait for the global `window.load` event, which
+    // only fires once every image and video on the *entire* page has
+    // finished downloading (gallery images, the other 3 videos' metadata,
+    // fonts, etc). On anything but a very fast connection that made the
+    // hero video sit frozen on its poster frame for several extra seconds
+    // even though the video itself was ready much sooner. It now attempts
+    // playback immediately, and again as soon as the video reports it has
+    // enough data — both cheap, redundant, and not gated on unrelated
+    // page weight.
+    playHeroVideo();
+    heroVideo.addEventListener('loadeddata', playHeroVideo, { once: true });
+    heroVideo.addEventListener('canplay', playHeroVideo, { once: true });
 
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden && heroVideo.paused) playHeroVideo();
