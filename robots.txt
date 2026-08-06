@@ -1,0 +1,18 @@
+# robots.txt — Janik Jayasuriya personal site
+# Replace the Sitemap domain below with your real production domain
+# (same placeholder used in index.html and sitemap.xml).
+
+User-agent: *
+Allow: /
+
+# Defensive: keep leftover dev/backup files out of search results if
+# they're still present on the server. The real fix is deleting these
+# files from the deployment entirely — see the project audit notes.
+Disallow: /index-backup.html
+Disallow: /css/style-backup.css
+Disallow: /css/style.before-about-height.css
+Disallow: /css/scroll-animations.css
+Disallow: /js/main-backup.js
+Disallow: /js/scroll-animations.js
+
+Sitemap: https://www.janikjayasuriya.com/sitemap.xml
