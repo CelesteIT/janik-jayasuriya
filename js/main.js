@@ -11,16 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const supportsObserver = 'IntersectionObserver' in window;
 
-  // ── Image Failure Fallback ──
-  document.querySelectorAll('img[data-fallback]').forEach((img) => {
-    img.addEventListener('error', () => {
-      const fallback = img.dataset.fallback;
-      if (!fallback || img.dataset.fallbackApplied === 'true') return;
-      img.dataset.fallbackApplied = 'true';
-      img.src = fallback;
-    });
-  });
-
   // ── Cinematic Loader ──
   const loader = document.querySelector('.loader');
   let loaderHidden = false;
@@ -233,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Counter Animation ──
-  const statNumbers = document.querySelectorAll('.stat-card__number[data-target]');
+  const statNumbers = document.querySelectorAll('.journey-gallery__stat-number[data-target]');
   const setFinalCounterValue = (element) => {
     const target = Number.parseInt(element.dataset.target || '0', 10);
     const suffix = element.dataset.suffix || '';
@@ -281,33 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       button.addEventListener('mouseleave', () => {
         button.style.transform = 'translate(0, 0)';
-      });
-    });
-  }
-
-  // ── Parallax Effect ──
-  const parallaxElements = document.querySelectorAll('[data-parallax]');
-  if (parallaxElements.length && !reducedMotion) {
-    window.addEventListener('scroll', () => {
-      parallaxElements.forEach((element) => {
-        const speed = Number.parseFloat(element.dataset.parallax || '0.1');
-        const rect = element.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          const scrolled = rect.top / window.innerHeight;
-          element.style.transform = `translateY(${scrolled * speed * 100}px)`;
-        }
-      });
-    }, { passive: true });
-  }
-
-  // ── Image Zoom on Hover ──
-  if (finePointer && !reducedMotion) {
-    document.querySelectorAll('[data-zoom]').forEach((image) => {
-      image.addEventListener('mousemove', (event) => {
-        const rect = image.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width;
-        const y = (event.clientY - rect.top) / rect.height;
-        image.style.transformOrigin = `${x * 100}% ${y * 100}%`;
       });
     });
   }
@@ -635,32 +598,6 @@ document.addEventListener('DOMContentLoaded', () => {
   backToTop?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
   });
-
-  // ── Timeline Scroll Animation ──
-  const timelineItems = document.querySelectorAll('.timeline__item');
-  if (reducedMotion || !supportsObserver) {
-    timelineItems.forEach((item) => {
-      item.style.opacity = '1';
-      item.style.transform = 'none';
-    });
-  } else {
-    const timelineObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
-
-    timelineItems.forEach((item) => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(40px)';
-      item.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-      timelineObserver.observe(item);
-    });
-  }
 
   // ── Company Card Hover Glow ──
   if (finePointer) {
