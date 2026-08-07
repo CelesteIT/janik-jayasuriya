@@ -11,6 +11,79 @@ document.addEventListener('DOMContentLoaded', () => {
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const supportsObserver = 'IntersectionObserver' in window;
 
+  // ── Cookie Consent + Google Analytics ──
+  // Analytics is never loaded until the visitor actively accepts. Choice is
+  // remembered in localStorage so returning visitors aren't asked again.
+  const CONSENT_KEY = 'celeste-cookie-consent'; // 'accepted' | 'declined'
+  const cookieBanner = document.getElementById('cookie-banner');
+  const cookieAccept = document.getElementById('cookie-accept');
+  const cookieDecline = document.getElementById('cookie-decline');
+
+  const loadGoogleAnalytics = () => {
+    const id = window.GA_MEASUREMENT_ID;
+    if (!id || id === 'G-XXXXXXXXXX' || window.__gaLoaded) return;
+    window.__gaLoaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', id, { anonymize_ip: true });
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+    document.head.appendChild(script);
+  };
+
+  const getStoredConsent = () => {
+    try {
+      return window.localStorage.getItem(CONSENT_KEY);
+    } catch (_error) {
+      return null; // localStorage may be blocked (private browsing, etc.)
+    }
+  };
+
+  const storeConsent = (value) => {
+    try {
+      window.localStorage.setItem(CONSENT_KEY, value);
+    } catch (_error) {
+      // If storage is blocked, the banner will simply reappear next visit.
+    }
+  };
+
+  const hideConsentBanner = () => {
+    cookieBanner?.setAttribute('hidden', '');
+  };
+
+  const showConsentBanner = () => {
+    cookieBanner?.removeAttribute('hidden');
+  };
+
+  window.showCookiePreferences = () => {
+    // Exposed globally so a "Cookie Preferences" link (e.g. in the footer)
+    // can let a visitor change their mind later, as real consent requires.
+    showConsentBanner();
+  };
+
+  const existingConsent = getStoredConsent();
+  if (existingConsent === 'accepted') {
+    loadGoogleAnalytics();
+  } else if (existingConsent !== 'declined') {
+    showConsentBanner();
+  }
+
+  cookieAccept?.addEventListener('click', () => {
+    storeConsent('accepted');
+    hideConsentBanner();
+    loadGoogleAnalytics();
+  });
+
+  cookieDecline?.addEventListener('click', () => {
+    storeConsent('declined');
+    hideConsentBanner();
+  });
+
   // ── Cinematic Loader ──
   const loader = document.querySelector('.loader');
   let loaderHidden = false;
