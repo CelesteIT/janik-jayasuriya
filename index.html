@@ -12,7 +12,7 @@
        uses — Google Fonts (styles+font files) and FormSubmit (contact
        form). style-src allows 'unsafe-inline' only for the tiny <noscript>
        fallback style block; script-src has no such allowance. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://www.google-analytics.com; media-src 'self'; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 
   <link rel="canonical" href="https://www.janikjayasuriya.lk/">
   <meta property="og:title" content="Janik Jayasuriya - Founder & Managing Director, Celeste">
@@ -42,6 +42,15 @@
   <!-- Google Fonts: loaded directly (not via CSS @import) so the browser can
        start fetching it immediately, using the preconnect hints above. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <!--
+    Google Analytics 4 — REPLACE THE ID BELOW WITH YOUR OWN.
+    Get it from analytics.google.com: create a GA4 property for this
+    site, then Admin > Data Streams > (your web stream) > Measurement ID.
+    It looks like "G-XXXXXXXXXX". Analytics only loads after a visitor
+    clicks "Accept" on the cookie banner — see main.js for the logic.
+  -->
+  <script>window.GA_MEASUREMENT_ID = "G-C8ZLL73DG9";</script>
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/style.css">
@@ -125,6 +134,19 @@
       <div class="loader__bar">
         <div class="loader__bar-fill"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner (analytics only — no cookies are set before
+       a choice is made; see main.js and privacy-policy.html) -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent" hidden>
+    <p class="cookie-banner__text">
+      This site uses analytics cookies to understand how visitors use it. See the
+      <a href="privacy-policy.html">Privacy Policy</a> for details.
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-banner__decline" id="cookie-decline">Decline</button>
+      <button type="button" class="cookie-banner__accept" id="cookie-accept">Accept</button>
     </div>
   </div>
 
@@ -1119,7 +1141,8 @@
     <div class="footer__container">
       <p class="footer__copy">
         &copy; 2026 Janik Jayasuriya. All rights reserved. &middot;
-        <a href="privacy-policy.html" class="footer__legal-link">Privacy Policy</a>
+        <a href="privacy-policy.html" class="footer__legal-link">Privacy Policy</a> &middot;
+        <button type="button" class="footer__legal-link footer__legal-button" onclick="window.showCookiePreferences && window.showCookiePreferences()">Cookie Preferences</button>
       </p>
       <div class="footer__social">
         <a href="https://lk.linkedin.com/in/janikjayasuriya" target="_blank" rel="noopener noreferrer" aria-label="Janik Jayasuriya on LinkedIn" title="LinkedIn">
