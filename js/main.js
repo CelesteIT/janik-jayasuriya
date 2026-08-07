@@ -170,8 +170,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.toggle('menu-open', isOpen);
   };
 
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  let navIsScrolled = null; // track state to avoid redundant DOM writes
+
   const updateNav = () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 80);
+    const isScrolled = window.scrollY > 80;
+    nav?.classList.toggle('scrolled', isScrolled);
+    if (themeColorMeta && isScrolled !== navIsScrolled) {
+      navIsScrolled = isScrolled;
+      // Matches .nav.scrolled's translucent white background vs. the
+      // transparent/dark background shown before scrolling.
+      themeColorMeta.setAttribute('content', isScrolled ? '#ffffff' : '#000000');
+    }
   };
 
   window.addEventListener('scroll', updateNav, { passive: true });
@@ -593,6 +603,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       restartTestimonials();
     }, { passive: true });
+
+    // Pause on hover/focus so desktop/mouse users get time to read a slide
+    // before it auto-advances (previously only touch interaction paused it).
+    track.addEventListener('mouseenter', stopTestimonials);
+    track.addEventListener('mouseleave', startTestimonials);
+    track.addEventListener('focusin', stopTestimonials);
+    track.addEventListener('focusout', startTestimonials);
   }
 
   document.addEventListener('visibilitychange', () => {
@@ -792,6 +809,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactSubmit = document.getElementById('contact-submit');
   const contactSubmitLabel = contactSubmit?.querySelector('.contact__submit-label');
 
+  // Anti-spam: record when the form became interactive. A submission that
+  // arrives faster than a human could plausibly read and fill the form is
+  // almost always a bot. Combined with the existing honeypot field, this
+  // catches both instant scripted submissions and honeypot-avoiding bots
+  // without adding a third-party CAPTCHA.
+  const contactFormReadyAt = Date.now();
+  const MIN_HUMAN_FILL_TIME_MS = 3000;
+
   const setContactStatus = (message, state = '') => {
     if (!contactStatus) return;
     contactStatus.textContent = message;
@@ -819,6 +844,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const formData = new FormData(contactForm);
+
+    // Spam check: honeypot filled in, or submitted implausibly fast.
+    // Bots that fill every field (including the hidden honeypot) or fire
+    // submissions instantly are silently "accepted" without actually
+    // sending anything — this avoids tipping bots off that they were
+    // caught, while keeping Janik's inbox and FormSubmit quota clean.
+    const honeypotValue = String(formData.get('_honey') || '').trim();
+    const filledInMs = Date.now() - contactFormReadyAt;
+    const looksLikeSpam = honeypotValue.length > 0 || filledInMs < MIN_HUMAN_FILL_TIME_MS;
+
+    if (looksLikeSpam) {
+      setContactSubmitting(true);
+      setContactStatus('Sending your message…');
+      window.setTimeout(() => {
+        contactForm.reset();
+        setContactStatus('Thank you. Your message has been sent successfully.', 'success');
+        setContactSubmitting(false);
+      }, 600);
+      return;
+    }
+
     const subject = String(formData.get('subject') || '').trim() || 'Website enquiry';
     formData.set('_subject', `Website enquiry: ${subject}`);
 
