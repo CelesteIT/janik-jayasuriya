@@ -142,6 +142,9 @@ img {
   height: auto;
   display: block;
 }
+picture {
+  display: block;
+}
 
 /* ── Cinematic Loader ── */
 .loader {
@@ -651,6 +654,12 @@ img {
   text-transform: uppercase;
   color: var(--color-gold);
   transition: gap var(--transition-smooth);
+  /* Sits above .company-card::before's decorative overlay so the link
+     stays clickable (see the ::before / > * rules further down). */
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
 }
 .company-card__link:hover {
   gap: 0.8rem;
@@ -1088,6 +1097,14 @@ img {
 .footer__copy {
   font-size: 0.85rem;
   color: var(--color-gray-500);
+}
+.footer__legal-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer__legal-link:hover {
+  color: var(--color-gold);
 }
 .footer__social {
   display: flex;
@@ -2025,13 +2042,6 @@ textarea:focus-visible {
 .company-card > * {
   position: relative;
   z-index: 1;
-}
-
-.company-card__link {
-  position: relative;
-  z-index: 5;
-  pointer-events: auto;
-  cursor: pointer;
 }
 
 @media (max-width: 1024px) {
@@ -3437,6 +3447,7 @@ body.lightbox-open {
 .contact__submit {
   gap: 0.65rem;
   min-height: 52px;
+  width: 100%;
 }
 
 .contact__submit:disabled {
