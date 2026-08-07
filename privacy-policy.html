@@ -20,7 +20,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; media-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://www.google-analytics.com; media-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+
+  <!-- Google Analytics 4 — same placeholder ID as index.html; replace both together -->
+  <script>window.GA_MEASUREMENT_ID = "G-C8ZLL73DG9";</script>
 
   <style>
     /* Minimal page-specific layout — this is a plain content page,
@@ -74,6 +77,17 @@
     </div>
   </nav>
 
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent" hidden>
+    <p class="cookie-banner__text">
+      This site uses analytics cookies to understand how visitors use it. See the
+      <a href="privacy-policy.html">Privacy Policy</a> for details.
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-banner__decline" id="cookie-decline">Decline</button>
+      <button type="button" class="cookie-banner__accept" id="cookie-accept">Accept</button>
+    </div>
+  </div>
+
   <main class="legal-page">
     <a href="/" class="legal-back">&larr; Back to Home</a>
     <h1>Privacy Policy</h1>
@@ -82,18 +96,19 @@
     <p>This page explains what happens to your information if you use the contact form or otherwise browse this website (janikjayasuriya.lk). It's written in plain language rather than dense legal text, so it's easy to actually read.</p>
 
     <h2>What this site collects</h2>
-    <p>This site does not use cookies, and does not run any analytics or tracking scripts. Nothing about your visit is logged or stored by this site itself.</p>
-    <p>The only information collected is what you choose to submit through the <strong>contact form</strong>: your name, email address, subject, and message.</p>
+    <p>This site uses Google Analytics to understand how visitors use it (which pages are viewed, how people arrived, general location by country/region, and device type) — but only after you actively accept this on the cookie banner. If you decline, or don't respond, no analytics cookies are set and no analytics data is collected about your visit. You can change your choice at any time using the "Cookie Preferences" link in the footer.</p>
+    <p>When active, Google Analytics uses cookies and collects your IP address, which is sent to Google in anonymized form. Google's own privacy policy governs how it handles this data; see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</p>
+    <p>Beyond analytics, the only other information collected is what you choose to submit through the <strong>contact form</strong>: your name, email address, subject, and message.</p>
 
     <h2>How contact form submissions are handled</h2>
-    <p>This is a static website with no backend server or database of its own. When you submit the contact form, your information is sent directly to <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>, a third-party form delivery service, which forwards it by email. FormSubmit's own privacy practices govern how it handles data in transit - you can read their policy on their website.</p>
+    <p>This is a static website with no backend server or database of its own. When you submit the contact form, your information is sent directly to <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>, a third-party form delivery service, which forwards it by email. FormSubmit's own privacy practices govern how it handles data in transit — you can read their policy on their website.</p>
     <p>Your message is not stored in any database controlled by this site; it exists only as the email it becomes.</p>
 
     <h2>Third-party links</h2>
-    <p>This site links out to third-party platforms - including LinkedIn, Facebook, Instagram, and Celeste's own website (celeste.lk) - and to independent news/verification sources. Once you click through, you're subject to that destination's own privacy policy, not this one.</p>
+    <p>This site links out to third-party platforms — including LinkedIn, Facebook, Instagram, and Celeste's own website (celeste.lk) — and to independent news/verification sources. Once you click through, you're subject to that destination's own privacy policy, not this one.</p>
 
     <h2>Data sharing and sale</h2>
-    <p>No information collected through this site is sold, rented, or shared with advertisers. The only party your contact form submission is shared with is FormSubmit, solely to deliver your message.</p>
+    <p>No information collected through this site is sold, rented, or shared with advertisers. Your contact form submission is shared only with FormSubmit, solely to deliver your message. If you've accepted analytics cookies, anonymized visit data is shared with Google Analytics, solely to understand site usage.</p>
 
     <h2>Your rights</h2>
     <p>If you'd like any message you've previously sent deleted from the associated inbox, or have any question about how your information was handled, contact <a href="mailto:janik@celeste.lk">janik@celeste.lk</a> directly.</p>
@@ -108,7 +123,8 @@
   <footer class="footer">
     <div class="footer__container">
       <p class="footer__copy">
-        &copy; 2026 Janik Jayasuriya. All rights reserved.
+        &copy; 2026 Janik Jayasuriya. All rights reserved. &middot;
+        <button type="button" class="footer__legal-link footer__legal-button" onclick="window.showCookiePreferences && window.showCookiePreferences()">Cookie Preferences</button>
       </p>
       <div class="footer__social">
         <a href="https://lk.linkedin.com/in/janikjayasuriya" target="_blank" rel="noopener noreferrer" aria-label="Janik Jayasuriya on LinkedIn" title="LinkedIn">
@@ -124,5 +140,6 @@
     </div>
   </footer>
 
+  <script src="js/consent.js"></script>
 </body>
 </html>
