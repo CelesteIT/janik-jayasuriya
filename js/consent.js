@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const loadGoogleAnalytics = () => {
     const id = window.GA_MEASUREMENT_ID;
-    if (!id || id === 'G-C8ZLL73DG9' || window.__gaLoaded) return;
+    // NOTE: checks for the "XXXXXXXXXX" placeholder pattern specifically
+    // (not the full ID string) so replacing the placeholder with a real ID
+    // everywhere in the project can never corrupt this check.
+    if (!id || id.includes('XXXXXXXXXX') || window.__gaLoaded) return;
     window.__gaLoaded = true;
 
     window.dataLayer = window.dataLayer || [];
