@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const loadGoogleAnalytics = () => {
     const id = window.GA_MEASUREMENT_ID;
-    if (!id || id === 'G-XXXXXXXXXX' || window.__gaLoaded) return;
+    if (!id || id === 'G-C8ZLL73DG9' || window.__gaLoaded) return;
     window.__gaLoaded = true;
 
     window.dataLayer = window.dataLayer || [];
@@ -65,6 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // can let a visitor change their mind later, as real consent requires.
     showConsentBanner();
   };
+
+  // The footer button calls this via addEventListener (not an inline
+  // onclick) because the site's CSP intentionally blocks inline script
+  // execution, including inline event handler attributes.
+  document.getElementById('cookie-preferences-link')?.addEventListener('click', () => {
+    window.showCookiePreferences();
+  });
 
   const existingConsent = getStoredConsent();
   if (existingConsent === 'accepted') {
