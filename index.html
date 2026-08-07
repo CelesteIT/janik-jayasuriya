@@ -12,7 +12,7 @@
        uses — Google Fonts (styles+font files) and FormSubmit (contact
        form). style-src allows 'unsafe-inline' only for the tiny <noscript>
        fallback style block; script-src has no such allowance. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://www.google-analytics.com; media-src 'self'; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://www.google-analytics.com; media-src 'self'; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 
   <link rel="canonical" href="https://www.janikjayasuriya.lk/">
   <meta property="og:title" content="Janik Jayasuriya - Founder & Managing Director, Celeste">
@@ -50,7 +50,7 @@
     It looks like "G-XXXXXXXXXX". Analytics only loads after a visitor
     clicks "Accept" on the cookie banner — see main.js for the logic.
   -->
-  <script>window.GA_MEASUREMENT_ID = "G-C8ZLL73DG9";</script>
+  <script src="js/config.js"></script>
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/style.css">
@@ -1142,7 +1142,7 @@
       <p class="footer__copy">
         &copy; 2026 Janik Jayasuriya. All rights reserved. &middot;
         <a href="privacy-policy.html" class="footer__legal-link">Privacy Policy</a> &middot;
-        <button type="button" class="footer__legal-link footer__legal-button" onclick="window.showCookiePreferences && window.showCookiePreferences()">Cookie Preferences</button>
+        <button type="button" class="footer__legal-link footer__legal-button" id="cookie-preferences-link">Cookie Preferences</button>
       </p>
       <div class="footer__social">
         <a href="https://lk.linkedin.com/in/janikjayasuriya" target="_blank" rel="noopener noreferrer" aria-label="Janik Jayasuriya on LinkedIn" title="LinkedIn">
