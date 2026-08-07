@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Janik Jayasuriya - Founder & Managing Director of Celeste. Pioneering quick-commerce in Sri Lanka. Recognized by World Bank & IFC. Award-winning entrepreneur.">
+  <meta name="description" content="Janik Jayasuriya - Founder & Managing Director of Celeste, Sri Lanka's leading quick-commerce platform. Recognized by World Bank & IFC.">
   <meta name="keywords" content="Janik Jayasuriya, Celeste Daily, Quick Commerce Sri Lanka, Founder, Managing Director, Entrepreneur, Online Supermarket Colombo">
   <meta name="author" content="Janik Jayasuriya">
   <meta name="robots" content="index, follow">
+
+  <!-- Content-Security-Policy: scoped to the domains this page actually
+       uses — Google Fonts (styles+font files) and FormSubmit (contact
+       form). style-src allows 'unsafe-inline' only for the tiny <noscript>
+       fallback style block; script-src has no such allowance. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; media-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 
   <link rel="canonical" href="https://www.janikjayasuriya.lk/">
   <meta property="og:title" content="Janik Jayasuriya - Founder & Managing Director, Celeste">
@@ -216,19 +222,11 @@
           <div class="about-profile__frame" aria-hidden="true"></div>
 
           <div class="about-profile__image about-profile__image--primary">
-            <img
-              src="assets/images/janik-awards-main.jpg"
-              alt="Janik Jayasuriya with multiple business and marketing awards"
-              loading="lazy"
-              decoding="async">
+            <picture><source srcset="assets/images/janik-awards-main.webp" type="image/webp"><img alt="Janik Jayasuriya with multiple business and marketing awards" loading="lazy" decoding="async" src="assets/images/janik-awards-main.jpg" width="533" height="800"></picture>
           </div>
 
           <div class="about-profile__image about-profile__image--secondary">
-            <img
-              src="assets/images/janik-awards-secondary.jpg"
-              alt="Janik Jayasuriya holding two awards"
-              loading="lazy"
-              decoding="async">
+            <picture><source srcset="assets/images/janik-awards-secondary.webp" type="image/webp"><img alt="Janik Jayasuriya holding two awards" loading="lazy" decoding="async" src="assets/images/janik-awards-secondary.jpg" width="533" height="800"></picture>
           </div>
 
           <div class="about-profile__badge">
@@ -501,12 +499,7 @@
             </div>
           </div>
           <div class="journey-gallery__placeholder journey-gallery__placeholder--image">
-            <img
-              class="journey-gallery__image"
-              src="assets/images/people-behind-the-progress.jpg"
-              alt="Celeste team celebrating together at a company event"
-              loading="lazy"
-              decoding="async">
+            <picture><source srcset="assets/images/people-behind-the-progress.webp" type="image/webp"><img class="journey-gallery__image" src="assets/images/people-behind-the-progress.jpg" alt="Celeste team celebrating together at a company event" loading="lazy" decoding="async" width="1600" height="1067"></picture>
           </div>
         </article>
 
@@ -530,12 +523,7 @@
             </div>
           </div>
           <div class="journey-gallery__placeholder journey-gallery__placeholder--image journey-gallery__placeholder--portrait">
-            <img
-              class="journey-gallery__image journey-gallery__image--portrait"
-              src="assets/images/today-and-beyond.jpg"
-              alt="Janik Jayasuriya in an executive portrait representing leadership and future business growth"
-              loading="lazy"
-              decoding="async">
+            <picture><source srcset="assets/images/today-and-beyond.webp" type="image/webp"><img class="journey-gallery__image journey-gallery__image--portrait" alt="Janik Jayasuriya in an executive portrait representing leadership and future business growth" loading="lazy" decoding="async" src="assets/images/today-and-beyond.jpg" width="853" height="1280"></picture>
           </div>
         </article>
       </div>
@@ -704,7 +692,7 @@
 
       <div class="gallery" id="gallery-grid" aria-live="polite">
         <article class="gallery__item reveal" data-category="leadership" data-title="World Marketing Forum" data-description="A leadership conversation on an international marketing stage.">
-          <img src="assets/images/gallery/world-marketing-forum.jpg" alt="Speaker being interviewed on stage at the World Marketing Forum" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/world-marketing-forum.webp" type="image/webp"><img alt="Speaker being interviewed on stage at the World Marketing Forum" loading="lazy" decoding="async" src="assets/images/gallery/world-marketing-forum.jpg" width="1400" height="933"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Leadership</span>
             <h3 class="gallery__caption">World Marketing Forum</h3>
@@ -713,7 +701,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-1" data-category="business" data-title="SLRA Annual General Meeting" data-description="Industry leaders gathered at the Sri Lanka Retailers' Association annual meeting.">
-          <img src="assets/images/gallery/slra-annual-general-meeting.jpg" alt="Group photograph at the Sri Lanka Retailers' Association annual meeting" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/slra-annual-general-meeting.webp" type="image/webp"><img alt="Group photograph at the Sri Lanka Retailers' Association annual meeting" loading="lazy" decoding="async" src="assets/images/gallery/slra-annual-general-meeting.jpg" width="1400" height="1242"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Industry</span>
             <h3 class="gallery__caption">SLRA Annual General Meeting</h3>
@@ -722,7 +710,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-2" data-category="business" data-title="Fulfillment Center Launch" data-description="The Celeste operations team gathered for the Pannipitiya Fulfillment Center launch.">
-          <img src="assets/images/gallery/fulfillment-center-launch.jpg" alt="Large operations team at a fulfillment center launch" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/fulfillment-center-launch.webp" type="image/webp"><img alt="Large operations team at a fulfillment center launch" loading="lazy" decoding="async" src="assets/images/gallery/fulfillment-center-launch.jpg" width="1400" height="933"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Team</span>
             <h3 class="gallery__caption">Fulfillment Center Launch</h3>
@@ -731,7 +719,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-3" data-category="community" data-title="Community Tree-Planting Moment" data-description="A community-focused ceremonial tree-planting activity.">
-          <img src="assets/images/gallery/community-tree-planting.jpg" alt="Two people taking part in a ceremonial tree-planting activity" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/community-tree-planting.webp" type="image/webp"><img alt="Two people taking part in a ceremonial tree-planting activity" loading="lazy" decoding="async" src="assets/images/gallery/community-tree-planting.jpg" width="1400" height="935"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Community</span>
             <h3 class="gallery__caption">Community Tree-Planting Moment</h3>
@@ -740,7 +728,7 @@
         </article>
 
         <article class="gallery__item reveal" data-category="business" data-title="Celeste × BNS Partnership" data-description="A business and endorsement partnership announcement.">
-          <img src="assets/images/gallery/celeste-bns-partnership.jpg" alt="Partnership announcement event with a Celeste and BNS display" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/celeste-bns-partnership.webp" type="image/webp"><img alt="Partnership announcement event with a Celeste and BNS display" loading="lazy" decoding="async" src="assets/images/gallery/celeste-bns-partnership.jpg" width="853" height="568"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Partnership</span>
             <h3 class="gallery__caption">Celeste × BNS Partnership</h3>
@@ -749,7 +737,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-1" data-category="leadership" data-title="Founder Portrait" data-description="A relaxed portrait reflecting energy and approachability.">
-          <img src="assets/images/gallery/founder-portrait-casual.jpg" alt="Casual business portrait against a neutral background" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/founder-portrait-casual.webp" type="image/webp"><img alt="Casual business portrait against a neutral background" loading="lazy" decoding="async" src="assets/images/gallery/founder-portrait-casual.jpg" width="1400" height="933"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Portrait</span>
             <h3 class="gallery__caption">Founder Portrait</h3>
@@ -758,7 +746,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-2" data-category="leadership" data-title="Leadership at Work" data-description="A candid office moment focused on day-to-day leadership.">
-          <img src="assets/images/gallery/leadership-at-work.jpg" alt="Business leader seated at a desk with a laptop" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/leadership-at-work.webp" type="image/webp"><img alt="Business leader seated at a desk with a laptop" loading="lazy" decoding="async" src="assets/images/gallery/leadership-at-work.jpg" width="1400" height="933"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Leadership</span>
             <h3 class="gallery__caption">Leadership at Work</h3>
@@ -767,7 +755,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-3" data-category="leadership" data-title="Team Strategy Presentation" data-description="Sharing ideas and strategy during an internal presentation.">
-          <img src="assets/images/gallery/team-strategy-presentation.jpg" alt="Presenter explaining a strategy board to a seated team" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/team-strategy-presentation.webp" type="image/webp"><img alt="Presenter explaining a strategy board to a seated team" loading="lazy" decoding="async" src="assets/images/gallery/team-strategy-presentation.jpg" width="1400" height="933"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Leadership</span>
             <h3 class="gallery__caption">Team Strategy Presentation</h3>
@@ -776,7 +764,7 @@
         </article>
 
         <article class="gallery__item reveal" data-category="business" data-title="Fulfillment Center Partnership" data-description="A partnership moment at a Celeste fulfillment center.">
-          <img src="assets/images/gallery/fulfillment-center-partnership.jpg" alt="Two business representatives shaking hands at a fulfillment center" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/fulfillment-center-partnership.webp" type="image/webp"><img alt="Two business representatives shaking hands at a fulfillment center" loading="lazy" decoding="async" src="assets/images/gallery/fulfillment-center-partnership.jpg" width="1400" height="1302"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Partnership</span>
             <h3 class="gallery__caption">Fulfillment Center Partnership</h3>
@@ -785,7 +773,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-1" data-category="moments" data-title="Celebration &amp; Friendship" data-description="A warm celebration moment shared on stage.">
-          <img src="assets/images/gallery/celebration-moment.jpg" alt="Two people sharing a celebration moment on stage" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/celebration-moment.webp" type="image/webp"><img alt="Two people sharing a celebration moment on stage" loading="lazy" decoding="async" src="assets/images/gallery/celebration-moment.jpg" width="1400" height="1122"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Moments</span>
             <h3 class="gallery__caption">Celebration &amp; Friendship</h3>
@@ -794,7 +782,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-2" data-category="moments" data-title="Wellness &amp; Balance" data-description="A quiet wellness moment away from the pace of business.">
-          <img src="assets/images/gallery/wellness-and-balance.jpg" alt="Person practicing yoga outdoors on a green mat" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/wellness-and-balance.webp" type="image/webp"><img alt="Person practicing yoga outdoors on a green mat" loading="lazy" decoding="async" src="assets/images/gallery/wellness-and-balance.jpg" width="764" height="764"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Wellness</span>
             <h3 class="gallery__caption">Wellness &amp; Balance</h3>
@@ -803,7 +791,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-3" data-category="moments" data-title="Live Performance" data-description="A high-energy live music performance.">
-          <img src="assets/images/gallery/live-performance.jpg" alt="Two performers singing together on a concert stage" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/live-performance.webp" type="image/webp"><img alt="Two performers singing together on a concert stage" loading="lazy" decoding="async" src="assets/images/gallery/live-performance.jpg" width="1400" height="1116"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Moments</span>
             <h3 class="gallery__caption">Live Performance</h3>
@@ -812,7 +800,7 @@
         </article>
 
         <article class="gallery__item reveal" data-category="moments" data-title="Celebrating with Family" data-description="Janik shares a special milestone with his family during the Celeste anniversary celebration.">
-          <img src="assets/images/gallery/celeste-anniversary.jpg" alt="Janik with his family at the Celeste anniversary celebration" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/celeste-anniversary.webp" type="image/webp"><img alt="Janik with his family at the Celeste anniversary celebration" loading="lazy" decoding="async" src="assets/images/gallery/celeste-anniversary.jpg" width="959" height="764"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Moments</span>
             <h3 class="gallery__caption">Celebrating with Family</h3>
@@ -821,7 +809,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-1" data-category="business" data-title="Industry Award Recognition" data-description="Recognition presented on an industry stage.">
-          <img src="assets/images/gallery/industry-award-recognition.jpg" alt="Award being presented on a large event stage" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/industry-award-recognition.webp" type="image/webp"><img alt="Award being presented on a large event stage" loading="lazy" decoding="async" src="assets/images/gallery/industry-award-recognition.jpg" width="1067" height="711"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Recognition</span>
             <h3 class="gallery__caption">Industry Award Recognition</h3>
@@ -830,7 +818,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-2" data-category="business" data-title="Strategic Partners" data-description="A partnership moment with industry collaborators.">
-          <img src="assets/images/gallery/strategic-partners.jpg" alt="Three business partners standing together at a branded event" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/strategic-partners.webp" type="image/webp"><img alt="Three business partners standing together at a branded event" loading="lazy" decoding="async" src="assets/images/gallery/strategic-partners.jpg" width="1400" height="1400"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Partnership</span>
             <h3 class="gallery__caption">Strategic Partners</h3>
@@ -839,7 +827,7 @@
         </article>
 
         <article class="gallery__item reveal reveal--delay-3" data-category="business" data-title="Celeste Everyday Essentials" data-description="A brand moment inside a retail environment.">
-          <img src="assets/images/gallery/celeste-everyday-essentials.jpg" alt="Person holding a Celeste shopping bag inside a retail store" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/celeste-everyday-essentials.webp" type="image/webp"><img alt="Person holding a Celeste shopping bag inside a retail store" loading="lazy" decoding="async" src="assets/images/gallery/celeste-everyday-essentials.jpg" width="1400" height="1636"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Brand</span>
             <h3 class="gallery__caption">Celeste Everyday Essentials</h3>
@@ -848,7 +836,7 @@
         </article>
 
         <article class="gallery__item reveal" data-category="leadership" data-title="Executive Portrait" data-description="A formal portrait representing confidence and leadership.">
-          <img src="assets/images/gallery/executive-portrait.jpg" alt="Formal executive portrait in a tailored jacket" loading="lazy" decoding="async">
+          <picture><source srcset="assets/images/gallery/executive-portrait.webp" type="image/webp"><img alt="Formal executive portrait in a tailored jacket" loading="lazy" decoding="async" src="assets/images/gallery/executive-portrait.jpg" width="1066" height="1332"></picture>
           <div class="gallery__overlay">
             <span class="gallery__category">Portrait</span>
             <h3 class="gallery__caption">Executive Portrait</h3>
@@ -1114,7 +1102,7 @@
                 <label class="visually-hidden" for="contact-message">Your Message</label>
                 <textarea id="contact-message" name="message" placeholder="Your Message" required maxlength="3000"></textarea>
               </div>
-              <button id="contact-submit" type="submit" class="btn-magnetic btn-magnetic--dark contact__submit" style="width:100%;">
+              <button id="contact-submit" type="submit" class="btn-magnetic btn-magnetic--dark contact__submit">
                 <span class="btn-magnetic__text contact__submit-label">Send Message</span>
                 <span class="contact__submit-spinner" aria-hidden="true"></span>
               </button>
@@ -1130,7 +1118,8 @@
   <footer class="footer">
     <div class="footer__container">
       <p class="footer__copy">
-        &copy; 2026 Janik Jayasuriya. All rights reserved.
+        &copy; 2026 Janik Jayasuriya. All rights reserved. &middot;
+        <a href="privacy-policy.html" class="footer__legal-link">Privacy Policy</a>
       </p>
       <div class="footer__social">
         <a href="https://lk.linkedin.com/in/janikjayasuriya" target="_blank" rel="noopener noreferrer" aria-label="Janik Jayasuriya on LinkedIn" title="LinkedIn">
